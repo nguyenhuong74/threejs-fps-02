@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DUSTLINE — Yard 7 · a three.js tactical FPS</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+{ "imports": { "three": "./three.module.min.js" } }
+</script>
+</head>
+<body>
+<div id="game"></div>
+
+<!-- ============ HUD (visible while playing) ============ -->
+<div id="hud" style="display:none">
+  <canvas id="minimap" width="150" height="124"></canvas>
+
+  <div id="topbar">
+    <div id="alive-v">◆ 5</div>
+    <div id="top-center">
+      <div id="phase-label">BUY PHASE</div>
+      <div id="timer">1:40</div>
+      <div id="score">0 — 0</div>
+    </div>
+    <div id="alive-w">◆ 5</div>
+  </div>
+  <div id="bomb-timer" style="display:none"></div>
+
+  <div id="killfeed"></div>
+
+  <div id="banner" style="display:none">
+    <div id="banner-title"></div>
+    <div id="banner-sub"></div>
+  </div>
+
+  <div id="crosshair"><i></i><i></i><i></i><i></i><span class="dot"></span></div>
+  <div id="hitmarker">✕</div>
+  <div id="scope" style="display:none"></div>
+  <div id="vignette"></div>
+
+  <div id="bottom-left">
+    <div id="health-num">100</div>
+    <div class="bar"><div id="health-bar"></div></div>
+    <div id="armor-num"></div>
+    <div class="bar thin"><div id="armor-bar"></div></div>
+  </div>
+
+  <div id="bottom-right">
+    <div id="weapon-name">P9 Sidearm</div>
+    <div id="ammo-row"><span id="ammo">12</span><span id="reserve">/ 48</span></div>
+    <div id="money">$800</div>
+  </div>
+
+  <div id="bottom-center">
+    <div id="charge" style="display:none"></div>
+    <div id="plant-wrap" style="display:none">
+      <div id="plant-label">PLANTING…</div>
+      <div class="bar"><div id="plant-fill"></div></div>
+    </div>
+    <div id="hint"></div>
+    <div id="spectate" style="display:none"></div>
+  </div>
+
+  <div id="buy-menu" style="display:none">
+    <div class="buy-head"><span>BUY MENU</span><span id="buy-money">$800</span></div>
+    <div id="buy-items"></div>
+    <div class="buy-foot">Press B or Esc to close · keys 2–8 buy instantly</div>
+  </div>
+</div>
+
+<!-- ============ Start screen ============ -->
+<div id="start-screen">
+  <div class="panel">
+    <h1>DUSTLINE</h1>
+    <div class="tag">YARD 7 · A ROUND-BASED TACTICAL FPS</div>
+    <p class="brief">You are a <b class="viper">VIPER</b>. Plant the charge at site <b>A</b> or <b>B</b>
+      and guard it till it blows — or eliminate the <b class="warden">WARDENS</b>. Win the round,
+      earn cash, buy better guns. First to 8 rounds takes the match. Stop to aim: firing on
+      the move sprays wide, and a headshot ends an argument fast.</p>
+    <div class="controls">
+      <span><b>WASD</b> move</span><span><b>Mouse</b> look</span><span><b>LMB</b> fire</span>
+      <span><b>RMB</b> aim / scope</span><span><b>R</b> reload</span><span><b>1 / 2 / 4</b> weapons</span>
+      <span><b>B</b> buy menu</span><span><b>E</b> plant charge</span><span><b>Ctrl / C</b> crouch</span>
+      <span><b>Space</b> jump</span><span><b>Esc</b> pause</span>
+    </div>
+    <button id="play-btn">DEPLOY — PLAY THE MATCH</button>
+    <div class="note">Single-player vs bots · 5v5 · best played with mouse + keyboard · sound on</div>
+  </div>
+</div>
+
+<!-- ============ Pause ============ -->
+<div id="pause-screen" style="display:none">
+  <div class="panel small">
+    <h2>PAUSED</h2>
+    <p>The yard waits for no one. Well — it waits for you.</p>
+    <button id="resume-btn">RESUME</button>
+    <button id="restart-btn" class="ghost">RESTART MATCH</button>
+    <button id="menu-btn" class="ghost">MAIN MENU</button>
+  </div>
+</div>
+
+<!-- ============ Match end ============ -->
+<div id="match-end-screen" style="display:none">
+  <div class="panel">
+    <h2 id="match-title">MATCH OVER</h2>
+    <div id="match-stats"></div>
+    <button id="play-again-btn">PLAY AGAIN</button>
+    <div class="note">The yard resets. The charge is fresh. So are you.</div>
+  </div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
